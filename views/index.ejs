@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Pemp's Gameroom</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Welcome to my Game room</h1>
+
+    <h2 id="test"></h2>
+
+    <script src="javascripts/socketConnection.js"></script>
   </body>
 </html>
