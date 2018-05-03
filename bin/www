@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var app = require('../app').app;
 var debug = require('debug')('gameonsockets:server');
 var http = require('http');
 var socket = require('socket.io');
@@ -20,7 +20,8 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = require('../app').server;
+//var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -89,24 +90,3 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
-
-//Socket code
-var io = socket(server);
-var clients = 0;
-io.on('connection', function(socket){
-  console.log('Made socket connection '+socket.id);
-  clients++;
-
-  io.sockets.emit('newClient', { clients: clients}); //emit message to all clients
-
-  // socket.on('chat', function(data){
-  //   socket.emit('testerEvent', { description: 'A custom event named testerEvent!'});
-  // })
-
-  socket.on('disconnect', function () {
-    console.log('A user disconnected');
-    clients--;
- });
-
-})
-
